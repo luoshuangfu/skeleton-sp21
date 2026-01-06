@@ -8,9 +8,10 @@ public class IntListExercises {
      *
      * @param lst IntList from Lecture
      */
+    //此方法旨在接收一个 IntList ，并将一个常量以可变方式添加到列表中的每个元素。
     public static void addConstant(IntList lst, int c) {
         IntList head = lst;
-        while (head.rest != null) {
+        while (head != null) {
             head.first += c;
             head = head.rest;
         }
@@ -23,6 +24,7 @@ public class IntListExercises {
      *
      * @param L IntList from Lecture
      */
+    //将 IntList 中某个节点的值替换为 0，当且仅当从该节点开始的 IntList 中最大值的首位数字和末位数字相同时才进行替换。
     public static void setToZeroIfMaxFEL(IntList L) {
         IntList p = L;
         while (p != null) {
@@ -50,8 +52,8 @@ public class IntListExercises {
      *  the first digit of x.
      */
     public static boolean firstDigitEqualsLastDigit(int x) {
-        int lastDigit = x % 10;
-        while (x > 10) {
+        int lastDigit = x % 10;//0
+        while (x >= 10) {
             x = x / 10;
         }
         int firstDigit = x % 10;
@@ -68,7 +70,7 @@ public class IntListExercises {
     public static boolean squarePrimes(IntList lst) {
         // Base Case: we have reached the end of the list
         if (lst == null) {
-            return false;
+            return true;
         }
 
         boolean currElemIsPrime = Primes.isPrime(lst.first);
@@ -77,6 +79,6 @@ public class IntListExercises {
             lst.first *= lst.first;
         }
 
-        return currElemIsPrime || squarePrimes(lst.rest);
+        return squarePrimes(lst.rest);
     }
 }
